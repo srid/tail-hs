@@ -1,7 +1,3 @@
-defaults:
-  - local: ../../hpack-common.yaml
-  - local: ../../hpack-relude.yaml
-
 name: tail
 version: 0.1.0.0
 license: MIT
@@ -9,11 +5,52 @@ copyright: 2025 Sridhar Ratnakumar
 maintainer: srid@srid.ca
 author: Sridhar Ratnakumar
 category: System
-homepage: https://github.com/juspay/vira/tree/main/packages/tail
+homepage: https://github.com/srid/tail-hs
 synopsis: Haskell API for tail -f streaming
 description: A Haskell library providing an API for tail -f style file streaming using STM, process, and async.
 
+language: GHC2021
+
+default-extensions:
+  - DataKinds
+  - DeriveDataTypeable
+  - DeriveGeneric
+  - DeriveTraversable
+  - DerivingStrategies
+  - DerivingVia
+  - ExplicitForAll
+  - FlexibleContexts
+  - FlexibleInstances
+  - GeneralizedNewtypeDeriving
+  - ImportQualifiedPost
+  - LambdaCase
+  - MultiParamTypeClasses
+  - MultiWayIf
+  - NamedFieldPuns
+  - NoStarIsType
+  - NumericUnderscores
+  - OverloadedStrings
+  - ScopedTypeVariables
+  - StrictData
+  - TypeApplications
+  - TypeFamilies
+  - TypeOperators
+  - TypeSynonymInstances
+  - ViewPatterns
+
+ghc-options:
+  - -Wall
+  - -optP-Wno-nonportable-include-path
+  - -Wincomplete-record-updates
+  - -Wincomplete-uni-patterns
+  - -Wmissing-deriving-strategies
+  - -Wunused-foralls
+  - -fprint-explicit-foralls
+  - -fprint-explicit-kinds
+
 dependencies:
+  - base >= 4 && < 5
+  - relude >= 1.0
   - async
   - process
   - stm
@@ -22,6 +59,20 @@ dependencies:
   - filepath
   - directory
   - stm-chans
+
+when:
+  - condition: false
+    other-modules: Paths_tail
+
+verbatim:
+  cabal-version: 2.0
+
+mixins:
+  - base hiding (Prelude)
+  - name: relude
+    mixin:
+      - (Relude as Prelude, Relude.Container.One)
+  - relude
 
 library:
   source-dirs: src
