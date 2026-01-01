@@ -5,7 +5,7 @@ cabal-version: 2.0
 -- see: https://github.com/sol/hpack
 
 name:          tail
-version:       0.1.0.0
+version:       0.2.0.0
 synopsis:      Haskell API for tail -f streaming
 description:
   A Haskell library providing an API for tail -f style file streaming using STM, process, and async.
