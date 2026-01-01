@@ -1,4 +1,4 @@
-## Unreleased
+## 0.2.0.0
 
 - Use `staticWhich` (from _which_ package) to reference path to `tail` at build time.
 
